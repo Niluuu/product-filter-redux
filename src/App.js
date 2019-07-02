@@ -38,12 +38,16 @@ export class App extends Component {
     }
 
     return (
-      <div>
-        <Input 
+      <div style={{display: "flex"}}>
+      <Grid>
+        somes
+      </Grid>
+       <Grid>
+         {/* <Input 
           text={text} 
           handleClick={this.handleClick}
           handleChange={this.handleChange}
-          />
+          /> */}
           {
             filtered === null || !filtered || filtered.length === 0 || text === "" ? (
               <div>
@@ -56,6 +60,7 @@ export class App extends Component {
                 <CountryTable products={filtered} />
               </div>
           )}
+        </Grid> 
 
       </div>
     );
