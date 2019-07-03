@@ -24,18 +24,8 @@ export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
 export const SEARCH_TEXT = 'SEARCH_TEXT';
 export const FILTER = 'FILTER';
+export const FILTER_CATEGORY = 'FILTER_CATEGORY';
 
-
-export const search_text = text => ({
-  type: SEARCH_TEXT,
-  payload: text,
-})
-
-export const filter = () => {
-  return {
-    type: FILTER,
-  }
-}
 
 export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN
@@ -51,5 +41,18 @@ export const fetchProductsFailure = error => ({
   payload: { error }
 });
 
-// filter 
+export const search_text = text => ({
+  type: SEARCH_TEXT,
+  payload: text,
+})
 
+export const filter = () => {
+  return {
+    type: FILTER,
+  }
+}
+
+export const filterCategory = newChecked => ({
+    type: FILTER_CATEGORY,
+    payload: newChecked
+})

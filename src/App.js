@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import './App.css';
 import { connect } from "react-redux";
-import { fetchProducts, filter, search_text } from "./productActions";
-import Input from './Input'
-import  CountryTable  from './CountryTable';
+import { fetchProducts, filter, search_text } from "./redux/actions/productActions";
+import Input from './components/Input'
+import CountryTable  from './components/CountryTable';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Grid from '@material-ui/core/Grid';
+import Categorys from './components/Categorys'
 
 export class App extends Component {
-
   componentDidMount() {
     this.props.dispatch(fetchProducts());
   }
@@ -38,27 +39,37 @@ export class App extends Component {
     }
 
     return (
-      <div style={{display: "flex"}}>
-      <Grid>
-        somes
-      </Grid>
-       <Grid>
-         {/* <Input 
+      <div style={{display: "flex", justifyContent: "center"}}>
+        <Grid>
+          <Categorys 
+            categorys={products} 
+          />
+        </Grid>
+        <Grid>
+         <Input 
           text={text} 
           handleClick={this.handleClick}
           handleChange={this.handleChange}
-          /> */}
+          />
           {
             filtered === null || !filtered || filtered.length === 0 || text === "" ? (
-              <div>
-                {/* all */}
+              <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="flex-start"
+              >
                 <CountryTable products={products} />
-              </div>
+              </Grid>
               ) : (
-              <div>
-                {/* filtered */}
-                <CountryTable products={filtered} />
-              </div>
+                <Grid
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+                >
+                  <CountryTable products={filtered} />
+                </Grid>
           )}
         </Grid> 
 
@@ -74,7 +85,8 @@ const mapStateToProps = state => ({
   loading: state.products.loading,
   error: state.products.error,
   text: state.products.text,
-  filtered: state.products.filtered
+  filtered: state.products.filtered,
+  newChecked: state.products.newChecked
 });
 
 

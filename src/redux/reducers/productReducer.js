@@ -3,15 +3,17 @@ import {
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
   FILTER,
-  SEARCH_TEXT
-} from './productActions';
+  SEARCH_TEXT,
+  FILTER_CATEGORY
+} from '../actions/productActions';
 
 const initialState = {
   items: [],
   filtered: [],
   loading: false,
   error: null,
-  text: ""
+  text: "",
+  newCheked: []
 };
 
 export default function productReducer(state = initialState, action) {
@@ -37,16 +39,20 @@ export default function productReducer(state = initialState, action) {
         items: []
       };
     case SEARCH_TEXT: 
-    return{
-      ...state,
-      text: action.payload
-    }
+      return{
+        ...state,
+        text: action.payload
+      }
     case FILTER: 
       return {
         ...state,
         text: state.text,
         filtered: state.items.filter((item) => item.name.toLowerCase().indexOf(state.text.toLowerCase()) !== -1 )
       }
+    case FILTER_CATEGORY: 
+      return {
+        ...state,
+      }  
     default:
       return state;
   }

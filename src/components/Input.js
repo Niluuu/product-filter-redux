@@ -12,8 +12,9 @@ export class Input extends Component {
          <Grid
           container
           direction="row"
-          justify="center"
+          justify="flex-start"
           alignItems="flex-start"
+          style={{margin: 10}}
         >
         <form onSubmit={this.props.handleClick}>
            <InputBase
