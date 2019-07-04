@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './App.css';
 import { connect } from "react-redux";
-import { fetchProducts, filter, search_text } from "./redux/actions/productActions";
-import Input from './components/Input'
+import { fetchProducts, filter, search_text, filterCategory  } from "./redux/actions/productActions";
+import Input from './components/Input';
 import CountryTable  from './components/CountryTable';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Grid from '@material-ui/core/Grid';
 import Categorys from './components/Categorys'
+import Chips from './components/Chips'
+
 
 export class App extends Component {
   componentDidMount() {
@@ -26,9 +28,17 @@ export class App extends Component {
     this.props.dispatch(search_text(event.target.value))
   }
 
+  toggleCheck = (checkedProduct) => {
+    this.props.dispatch(filterCategory(checkedProduct))
+    this.props.dispatch(filter())  
+
+    // console.log("app CheckedProduct", checkedProduct )
+  }
+
    render() {
-    const { error, loading, products, text, filtered } = this.props;
-    console.log("filtered",filtered)
+    const { error, loading, products, text, filtered, checkedProduct, chips} = this.props;
+    console.log("filtered app.js",filtered);
+    // console.log("chips", chips)
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -43,22 +53,25 @@ export class App extends Component {
         <Grid>
           <Categorys 
             categorys={products} 
+            checkedProduct={checkedProduct}
+            toggleCheck={this.toggleCheck}
           />
         </Grid>
         <Grid>
          <Input 
-          text={text} 
-          handleClick={this.handleClick}
-          handleChange={this.handleChange}
+            text={text} 
+            handleClick={this.handleClick}
+            handleChange={this.handleChange}
           />
           {
             filtered === null || !filtered || filtered.length === 0 || text === "" ? (
               <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="flex-start"
+                container
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
               >
+              all
                 <CountryTable products={products} />
               </Grid>
               ) : (
@@ -68,6 +81,8 @@ export class App extends Component {
                 justify="flex-start"
                 alignItems="flex-start"
                 >
+                filter
+                  <Chips chips={chips} />
                   <CountryTable products={filtered} />
                 </Grid>
           )}
@@ -86,7 +101,8 @@ const mapStateToProps = state => ({
   error: state.products.error,
   text: state.products.text,
   filtered: state.products.filtered,
-  newChecked: state.products.newChecked
+  checkedProduct: state.products.checkedProduct,
+  chips: state.products.chips
 });
 
 

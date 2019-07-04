@@ -8,6 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Checkbox from '@material-ui/core/Checkbox';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+// import { filterCategory } from "../redux/actions/productActions";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CategoryType = ({categorys}) => {
+const CategoryType = ({categorys, checkedProduct, toggleCheck  }) => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const [checked, setChecked] = React.useState([]);
@@ -36,13 +37,13 @@ const CategoryType = ({categorys}) => {
 
     if (currentIndex === -1) {
       newChecked.push(value);
+      toggleCheck(checkedProduct = newChecked);
     } else {
       newChecked.splice(currentIndex, 1);
+      toggleCheck(checkedProduct.filter(crI=> checkedProduct.splice(crI, 1)  ));
     }
 
     setChecked(newChecked);
-    console.log("checked",newChecked)
-    
   }
 
   function handleClick() {
@@ -81,4 +82,4 @@ const CategoryType = ({categorys}) => {
 }
 
 
-export default CategoryType
+export default  CategoryType

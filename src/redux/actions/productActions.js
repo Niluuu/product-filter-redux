@@ -52,7 +52,7 @@ export const filter = () => {
   }
 }
 
-export const filterCategory = newChecked => ({
+export const filterCategory = checkedProduct => ({
     type: FILTER_CATEGORY,
-    payload: newChecked
+    payload: checkedProduct
 })

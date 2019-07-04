@@ -13,7 +13,8 @@ const initialState = {
   loading: false,
   error: null,
   text: "",
-  newCheked: []
+  checkedProduct: [],
+  chips: []
 };
 
 export default function productReducer(state = initialState, action) {
@@ -52,6 +53,9 @@ export default function productReducer(state = initialState, action) {
     case FILTER_CATEGORY: 
       return {
         ...state,
+        checkedProduct: action.payload,
+        chips: action.payload,
+        filtered: state.items.filter((item)=> item.name === "Afghanistan")
       }  
     default:
       return state;

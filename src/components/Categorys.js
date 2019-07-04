@@ -4,6 +4,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import CategoryType from './CategoryType';
 
+
 const useStyles = makeStyles(theme => ({
   categoryRow: {
     minWidth: 627,
@@ -11,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Categorys = ({categorys }) => {
+const Categorys = ({categorys,checkedProduct, toggleCheck }) => {
   const classes = useStyles();
 
   return (
@@ -22,10 +23,11 @@ const Categorys = ({categorys }) => {
         subheader={ <ListSubheader component="div" id="nested-list-subheader">Categorys</ListSubheader> }
         className={classes.root}
         >
-        <CategoryType categorys={categorys}  />
+        <CategoryType categorys={categorys} checkedProduct={checkedProduct} toggleCheck={toggleCheck} />
       </List>
     </div>
   )
 }
+
 
 export default Categorys
