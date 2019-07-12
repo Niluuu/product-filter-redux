@@ -8,13 +8,12 @@ import {
 } from '../actions/productActions';
 
 const initialState = {
+  fetch: [],
   items: [],
-  filtered: [],
   loading: false,
   error: null,
   text: "",
   checkedProduct: [],
-  chips: []
 };
 
 export default function productReducer(state = initialState, action) {
@@ -30,6 +29,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
+        fetch: action.payload.products,
         items: action.payload.products
       };
     case FETCH_PRODUCTS_FAILURE:
@@ -37,26 +37,27 @@ export default function productReducer(state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        items: []
+        fetch: []
       };
     case SEARCH_TEXT: 
       return{
         ...state,
-        text: action.payload
-      }
+        text: action.payload,
+        items: state.fetch.filter((item) => item.name.toLowerCase().search(action.payload.toLowerCase()) !== -1)
+      };
     case FILTER: 
       return {
         ...state,
-        text: state.text,
-        filtered: state.items.filter((item) => item.name.toLowerCase().indexOf(state.text.toLowerCase()) !== -1 )
-      }
+        items: state.fetch.filter((item) => item.name.toLowerCase().search(state.text.toLowerCase()) !== -1 )
+      };
     case FILTER_CATEGORY: 
       return {
         ...state,
         checkedProduct: action.payload,
-        chips: action.payload,
-        filtered: state.items.filter((item)=> item.name === "Afghanistan")
-      }  
+        items: state.fetch.filter(function(el) { return state.checkedProduct.find(function(el2) {
+          return el.name === el2
+        })})
+      } 
     default:
       return state;
   }

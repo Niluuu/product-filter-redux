@@ -11,7 +11,7 @@ import Chips from './components/Chips'
 
 
 export class App extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.dispatch(fetchProducts());
   }
 
@@ -30,16 +30,12 @@ export class App extends Component {
 
   toggleCheck = (checkedProduct) => {
     this.props.dispatch(filterCategory(checkedProduct))
-    this.props.dispatch(filter())  
-
-    // console.log("app CheckedProduct", checkedProduct )
   }
 
    render() {
-    const { error, loading, products, text, filtered, checkedProduct, chips} = this.props;
-    console.log("filtered app.js",filtered);
-    // console.log("chips", chips)
-
+    const { error, loading, products, text, checkedProduct, items,} = this.props;
+    console.log(checkedProduct)
+    console.log(items)
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -63,29 +59,18 @@ export class App extends Component {
             handleClick={this.handleClick}
             handleChange={this.handleChange}
           />
-          {
-            filtered === null || !filtered || filtered.length === 0 || text === "" ? (
-              <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="flex-start"
-              >
-              all
-                <CountryTable products={products} />
-              </Grid>
-              ) : (
-                <Grid
-                container
-                direction="row"
-                justify="flex-start"
-                alignItems="flex-start"
-                >
-                filter
-                  <Chips chips={chips} />
-                  <CountryTable products={filtered} />
-                </Grid>
-          )}
+         
+          <Grid
+          container
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+          >
+          items
+            <Chips chips={checkedProduct} />
+            <CountryTable products={items} />
+          </Grid>
+       
         </Grid> 
 
       </div>
@@ -96,11 +81,11 @@ export class App extends Component {
 
 
 const mapStateToProps = state => ({
-  products: state.products.items,
+  products: state.products.fetch,
   loading: state.products.loading,
   error: state.products.error,
   text: state.products.text,
-  filtered: state.products.filtered,
+  items: state.products.items,
   checkedProduct: state.products.checkedProduct,
   chips: state.products.chips
 });
