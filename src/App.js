@@ -19,22 +19,23 @@ export class App extends Component {
     e.preventDefault()
     if (this.props.text.length < 1) {
       alert("write something")
-    }else{
-      this.props.dispatch(filter())  
     }
   }
 
   handleChange = (event) => {
     this.props.dispatch(search_text(event.target.value))
+    this.toggleCheck(
+    )
   }
 
   toggleCheck = (checkedProduct) => {
     this.props.dispatch(filterCategory(checkedProduct))
+    this.props.dispatch(filter()) 
   }
 
    render() {
     const { error, loading, products, text, checkedProduct, items,} = this.props;
-    console.log(checkedProduct)
+    console.log("cheked",checkedProduct)
     console.log(items)
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -53,7 +54,7 @@ export class App extends Component {
             toggleCheck={this.toggleCheck}
           />
         </Grid>
-        <Grid>
+        <Grid  style={{minWidth: 900,maxWidth: 900, }} >
          <Input 
             text={text} 
             handleClick={this.handleClick}
@@ -66,7 +67,6 @@ export class App extends Component {
           justify="flex-start"
           alignItems="flex-start"
           >
-          items
             <Chips chips={checkedProduct} />
             <CountryTable products={items} />
           </Grid>

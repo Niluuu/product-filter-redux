@@ -5,7 +5,6 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
@@ -13,6 +12,7 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles({
   card: {
     maxWidth: 240,
+    minWidth: 240,
     margin: 10
   },
   media: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 const CountryTable = ({ products }) =>{
     const classes = useStyles();
-
+    // console.log(products)
     return (
           <Grid
             container
@@ -45,19 +45,10 @@ const CountryTable = ({ products }) =>{
                   {country.capital}-{country.alpha3Code}
                   </Typography>
                   <Typography variant="body2" color="textSecondary" component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
+                  Capital-<strong>{country.name}</strong>
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
-                <Button size="small" color="primary">
-                  Learn More
-                </Button>
-              </CardActions>
             </Card>
             ))}
           </Grid>

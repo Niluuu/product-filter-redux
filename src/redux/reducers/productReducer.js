@@ -48,15 +48,14 @@ export default function productReducer(state = initialState, action) {
     case FILTER: 
       return {
         ...state,
-        items: state.fetch.filter((item) => item.name.toLowerCase().search(state.text.toLowerCase()) !== -1 )
+        items: state.fetch.filter(function(el) { return state.checkedProduct.find(function(el2) {
+          return el.name === el2
+        })})     
       };
     case FILTER_CATEGORY: 
       return {
         ...state,
-        checkedProduct: action.payload,
-        items: state.fetch.filter(function(el) { return state.checkedProduct.find(function(el2) {
-          return el.name === el2
-        })})
+        checkedProduct: action.payload
       } 
     default:
       return state;

@@ -40,10 +40,12 @@ const CategoryType = ({categorys, checkedProduct, toggleCheck  }) => {
       toggleCheck(checkedProduct = newChecked);
     } else {
       newChecked.splice(currentIndex, 1);
-      toggleCheck(checkedProduct.filter(crI=> checkedProduct.splice(crI, 1)  ));
+      toggleCheck(checkedProduct.filter(crI=> checkedProduct.splice(crI, 1)));
     }
 
     setChecked(newChecked);
+
+    toggleCheck(checkedProduct = newChecked)
   }
 
   function handleClick() {
