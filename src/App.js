@@ -17,8 +17,6 @@ export class App extends Component {
 
   handleChange = (event) => {
     this.props.dispatch(search_text(event.target.value))
-    this.toggleCheck(
-    )
   }
 
   toggleCheck = (checkedProduct) => {
