@@ -15,13 +15,6 @@ export class App extends Component {
     this.props.dispatch(fetchProducts());
   }
 
-  handleClick = (e) => {
-    e.preventDefault()
-    if (this.props.text.length < 1) {
-      alert("write something")
-    }
-  }
-
   handleChange = (event) => {
     this.props.dispatch(search_text(event.target.value))
     this.toggleCheck(
@@ -47,14 +40,14 @@ export class App extends Component {
 
     return (
       <div style={{display: "flex", justifyContent: "center"}}>
-        <Grid>
+        <Grid style={{minWidth: 400,maxWidth: 400, }}>
           <Categorys 
             categorys={products} 
             checkedProduct={checkedProduct}
             toggleCheck={this.toggleCheck}
           />
         </Grid>
-        <Grid  style={{minWidth: 900,maxWidth: 900, }} >
+        <Grid  style={{minWidth: 600,maxWidth: 600, }} >
          <Input 
             text={text} 
             handleClick={this.handleClick}

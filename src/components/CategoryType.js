@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: theme.spacing(4),
   },
   categoryRow: {
-    minWidth: 627,
+    minWidth: 400,
+    maxWidth: 400,
     margin: 10
   }
 }));
