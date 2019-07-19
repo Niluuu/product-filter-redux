@@ -18,10 +18,6 @@ export default function OutlinedChips({chips}) {
   const classes = useStyles();
   // console.log(chips)
 
-  function handleDelete() {
-    alert('You clicked the delete icon.');
-  }
-
   if (chips === null || !chips || chips.length === 0 ) {
     return null
   }
@@ -35,7 +31,6 @@ export default function OutlinedChips({chips}) {
         chips.map(chip => 
           <Chip
             label={`${chip}`}
-            onDelete={handleDelete}
             className={classes.chip}
             color="primary"
             variant="outlined"
