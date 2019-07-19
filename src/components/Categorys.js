@@ -7,7 +7,7 @@ import CategoryType from './CategoryType';
 
 const useStyles = makeStyles(theme => ({
   categoryRow: {
-    minWidth: 627,
+    minWidth: 150,
     margin: 10
   }
 }));
