@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### this is final look of my filter ![filter](https://user-images.githubusercontent.com/35704809/61794340-6bb6f780-ae3a-11e9-9bf9-2edb01a370a9.png)
+### This is final look ![filter](https://user-images.githubusercontent.com/35704809/61794340-6bb6f780-ae3a-11e9-9bf9-2edb01a370a9.png)
 
 ## Available Scripts
 
