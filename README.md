@@ -1,11 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### this is final look of my filter ![filter](https://user-images.githubusercontent.com/35704809/61794340-6bb6f780-ae3a-11e9-9bf9-2edb01a370a9.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
-
-### this is final look of my filter ![filter](https://user-images.githubusercontent.com/35704809/61794340-6bb6f780-ae3a-11e9-9bf9-2edb01a370a9.png)
-
 ### `npm start`
 
 Runs the app in the development mode.<br>
